@@ -1,41 +1,22 @@
--- INSERT INTO movies (movie_name)
--- VALUES ("Lion King"),
---        ("The Godfather"),
---        ("West Side Story"),
---        ("Parasite"),
---        ("The Wizard of Oz");
-
--- INSERT INTO reviews (movie_id, review)
--- VALUES (1, "Zazu is underrated. Give that hornbill a sequel!"),
---        (2, "I'm gonna make him an offer you can't refuse, watch this movie"),
---        (1, "Scar is the lion everyone loves to hate"),
---        (3, "Ten years of ballet and three years of tap to join a gang in this neighborhood"),
---        (5, "The tin man gave a metallic, hollow performance"),
---        (1, "Hakuna matata"),
---        (5, "Those flying monkeys are nightmare fuel!");
 INSERT INTO department (department_name)
 VALUES ("Sales"),
        ("RD"),
        ("Manufacturing"),
-       ("Shipping"),
-       -- ("Lead Engineer"),
-       -- ("Engineer"),
-       -- ("Lead Technician"),
-       -- ("Technician");
+       ("Shipping");
    
 
 INSERT INTO employeeRole (title, salary)
-VALUES ("CEO"),
-       ("VP"),
-       ("General Manager"),
-       ("Supervisor"),
-       ("Lead Engineer"),
-       ("Engineer"),
-       ("Lead Technician"),
-       ("Technician"),
-       ("Lead Sales Associate"),
-       ("Sales Associate"),
-       ("Shipper");
+VALUES ("CEO", 250000.00),
+       ("VP", 175000.00),
+       ("General Manager", 125000.00),
+       ("Supervisor", 85000.00),
+       ("Lead Engineer", 85000.00),
+       ("Engineer", 70000.00),
+       ("Lead Technician", 70000.00),
+       ("Technician", 65000.00),
+       ("Lead Sales Associate", 75000.00),
+       ("Sales Associate", 65000.00),
+       ("Shipper", 55000.00);
 
 -- VALUES (001, 001, "coffee, milk"),
 --        (002, 002, "eggs, cheese"),
