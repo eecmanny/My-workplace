@@ -4,12 +4,12 @@ CREATE DATABASE myCompany_db;
 USE myCompany_db;
 
 CREATE TABLE department (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  id INT NOT NULL PRIMARY KEY,
   department_name VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE employeeRole (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id INT NOT NULL PRIMARY KEY,
     department_id INT,
     title VARCHAR(30) NOT NULL
     salary DECIMAL
