@@ -13,18 +13,56 @@
 --        (5, "The tin man gave a metallic, hollow performance"),
 --        (1, "Hakuna matata"),
 --        (5, "Those flying monkeys are nightmare fuel!");
-       
-INSERT INTO customers (id, first_name, last_name)
-VALUES (001, "Arthur", "Miller"),
-       (002, "Chinua", "Achebe"),
-       (003, "Margaret", "Atwood"),
-       (004, "Gabriel", "Garcia Marquez"),
-       (005, "Simone", "de Beauvoir");
-       
-INSERT INTO customer_order (id, customer_id, order_details)
-VALUES (001, 001, "coffee, milk"),
-       (002, 002, "eggs, cheese"),
-       (003, 003, "organic cereal"),
-       (004, 004, "oranges, peaches"),
-       (005, 005, "ice cream");
-       
+INSERT INTO department (department_name)
+VALUES ("Sales"),
+       ("RD"),
+       ("Manufacturing"),
+       ("Shipping"),
+       -- ("Lead Engineer"),
+       -- ("Engineer"),
+       -- ("Lead Technician"),
+       -- ("Technician");
+   
+
+INSERT INTO employeeRole (title, salary)
+VALUES ("CEO"),
+       ("VP"),
+       ("General Manager"),
+       ("Supervisor"),
+       ("Lead Engineer"),
+       ("Engineer"),
+       ("Lead Technician"),
+       ("Technician"),
+       ("Lead Sales Associate"),
+       ("Sales Associate"),
+       ("Shipper");
+
+-- VALUES (001, 001, "coffee, milk"),
+--        (002, 002, "eggs, cheese"),
+--        (003, 003, "organic cereal"),
+--        (004, 004, "oranges, peaches"),
+--        (005, 005, "ice cream");
+
+INSERT INTO employee (first_name, last_name)
+VALUES ("Arthur", "Miller"),
+       ("Chinua", "Achebe"),
+       ("Margaret", "Atwood"),
+       ("Gabriel", "Garcia Marquez"),
+       ("Simone", "de Beauvoir"),
+       ("Manny", "Cordero"),
+       ("Micheal", "Angelo"),
+       ("Leonardo", "Davinci"),
+       ("Simon", "Cowell"),
+       ("Lenerd", "Nemoi"),
+       ("James", "Kirk"),
+       ("Micheal", "Jackson"),
+       ("Tom", "Hanks"),
+       ("John", "Doe"),
+       ("Jane", "Doe"),
+       ("Chris", "Smith"),
+       ("Jen", "Smith"),
+       ("Rick", "Sanchez"),
+       ("David", "Schitts"),
+       ("John", "Connor"),
+       ("Alexus", "Schitts");
+
