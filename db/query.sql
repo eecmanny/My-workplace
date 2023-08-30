@@ -1,5 +1,8 @@
-SELECT department.id AS movie, reviews.review
-FROM reviews
-LEFT JOIN movies
-ON reviews.movie_id = movies.id
-ORDER BY movies.movie_name;
+SELECT *
+FROM myCompany_db
+
+SELECT department, COUNT(id) AS department, department_name,
+FROM myCompany_db
+JOIN
+ON 
+ORDER BY ;
