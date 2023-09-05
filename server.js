@@ -33,7 +33,7 @@ function SearchSQL() {
         name: 'databaseSelection',
         message: 'What would you like to do?',
         choices: [
-          'View all department',
+          'View all departments',
           'View all roles',
           'View all employees',
           'Add a department',
@@ -107,18 +107,6 @@ function viewAllDepartments() {
 //     });
 // }
 
-// function viewAllDepartments() {
-//   db.promise().query('SELECT * FROM department')
-//     .then(function ([rows]) {
-//       let departments = rows;
-//       console.table(departments);
-//       SearchSQL();
-//     })
-//     // .catch(function (error) {
-//     //   console.error('Error fetching departments:', error);
-//     //   SearchSQL();
-//     // });
-// }
 
 
 
@@ -131,6 +119,12 @@ function viewAllRoles() {
     })
 }
 
+// function viewAllRoles() {
+//   db.promise().query('SELECT role.title, role.id, department_id, role.salary FROM role INNER JOIN department ON role.department_id = department_id', function (err, results) {
+//     console.log(results);
+//   });
+// }
+
 function viewAllEmployees() {
   db.promise().query('SELECT employee.id, employee.first_name, employee.last_name, employee.role_id, department_id, role.salary, employee.manager_id FROM employee INNER JOIN role ON employee.role_id = role.id')
     .then(function ([rowsEmployee]) {
@@ -140,88 +134,93 @@ function viewAllEmployees() {
     })
 }
 
-// // Function add a department
-// function addDepartment() {
-//   inquirer.prompt([
-//     {
-//       type: 'input',
-//       message: 'Please enter the name of the department.',
-//       name: 'name'
-//     }
-//   ])
+// function viewAllEmployees() {
+//   db.promise().query('SELECT employee.id, employee.first_name, employee.last_name, employee.role_id, department_id, role.salary, employee.manager_id FROM employee INNER JOIN role ON employee.role_id = role.id', function (err, results) {
+//     console.log(results);
+//   });
+// }
 
-//     .then((answers) => {
-//       db.query('INSERT INTO department (department_name) VALUES (?)', [answers.name]);
-//       console.log('Department has been added.');
-//       SearchSQL();
-//     });
-// };
+// Function add a department
+function addDepartment() {
+  inquirer.prompt([
+    {
+      type: 'input',
+      message: 'Please enter the name of the department.',
+      name: 'name'
+    }
+  ])
 
-// // Function add a role
-// function addRole() {
-//   inquirer.prompt([
-//     {
-//       type: 'input',
-//       message: 'Please enter the name of the role.',
-//       name: 'title'
-//     },
+    .then((answers) => {
+      db.query('INSERT INTO department (department_name) VALUES (?)', [answers.name]);
+      console.log('Department has been added.');
+      SearchSQL();
+    });
+};
 
-//     {
-//       type: 'input',
-//       message: 'Please enter the salary.',
-//       name: 'salary'
-//     },
+// Function add a role
+function addRole() {
+  inquirer.prompt([
+    {
+      type: 'input',
+      message: 'Please enter the name of the role.',
+      name: 'title'
+    },
 
-//     {
-//       type: 'input',
-//       message: 'Please enter ID of the department.',
-//       name: 'department_id'
-//     }
-//   ])
+    {
+      type: 'input',
+      message: 'Please enter the salary.',
+      name: 'salary'
+    },
 
-//     .then((answers) => {
-//       // db.query('INSERT INTO role (title, salary, department_id) VALUES (answers.title, answers.salary, answers.department_id)', [answers.title, answers.salary, answers.department_id]);
-//       db.promise().query('INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)', [answers.title, answers.salary, answers.department_id]);
-//       console.log('Role has been added.');
-//       SearchSQL();
-//     });
-// };
+    {
+      type: 'input',
+      message: 'Please enter ID of the department.',
+      name: 'department_id'
+    }
+  ])
 
-// // Function add an employee
-// function addEmployee() {
-//   inquirer.prompt([
-//     {
-//       type: 'input',
-//       message: 'Please enter the first name of the employee.',
-//       name: 'first_name'
-//     },
+    .then((answers) => {
+      db.promise().query('INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)', [answers.title, answers.salary, answers.department_id]);
+      console.log('Role has been added.');
+      SearchSQL();
+    });
+};
 
-//     {
-//       type: 'input',
-//       message: 'Please enter the last name of the employee.',
-//       name: 'last_name'
-//     },
+// Function add an employee
+function addEmployee() {
+  inquirer.prompt([
+    {
+      type: 'input',
+      message: 'Please enter the first name of the employee.',
+      name: 'first_name'
+    },
 
-//     {
-//       type: 'input',
-//       message: 'Please enter the role of the employee.',
-//       name: 'role_id'
-//     },
+    {
+      type: 'input',
+      message: 'Please enter the last name of the employee.',
+      name: 'last_name'
+    },
 
-//     {
-//       type: 'input',
-//       message: 'Please enter the id for the manager of the employee.',
-//       name: 'manager_id'
-//     }
-//   ])
+    {
+      type: 'input',
+      message: 'Please enter the role id of the employee.',
+      name: 'role_id'
+    },
 
-//     .then((answers) => {
-//       // db.query('INSERT INTO role (first_name, last_name, role_id, manager_id) VALUES (answers.first_name, answers.last_name, answers.role_id, answers.manager_id)', [answers.first_name, answers.last_name, answers.role_id, answers.manager_id]);
-//       db.promise().query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)', [answers.first_name, answers.last_name, answers.role_id, answers.manager_id]);
-//       console.log('Employee has been added.');
-//       SearchSQL();
-//     });
-// };
+    {
+      type: 'input',
+      message: 'Please enter the id for the manager of the employee.',
+      name: 'manager_id'
+    }
+  ])
+
+    .then((answers) => {
+      // db.query('INSERT INTO role (first_name, last_name, role_id, manager_id) VALUES (answers.first_name, answers.last_name, answers.role_id, answers.manager_id)', [answers.first_name, answers.last_name, answers.role_id, answers.manager_id]);
+      db.promise().query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)', [answers.first_name, answers.last_name, answers.role_id, answers.manager_id]);
+      console.log('Employee has been added.');
+      SearchSQL();
+    });
+};
 
 // // Function to update an employee's role
 // function updateRole() {

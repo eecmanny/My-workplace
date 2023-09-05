@@ -18,6 +18,7 @@ CREATE TABLE role (
     ON DELETE SET NULL
 );
 
+--With my manager id joined
 CREATE TABLE employee (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     role_id INT,
@@ -26,22 +27,20 @@ CREATE TABLE employee (
     last_name VARCHAR(50) NOT NULL,
     FOREIGN KEY (role_id)
     REFERENCES role(id)
+    ON DELETE SET NULL,
+    FOREIGN KEY (manager_id)
+    REFERENCES employee(id)
     ON DELETE SET NULL
 );
 
-
--- CREATE TABLE customers (
---   id INT NOT NULL,
---   first_name VARCHAR(30),
---   last_name VARCHAR(30),
---   PRIMARY KEY (id)
+-- CREATE TABLE employee (
+--     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     role_id INT,
+--     manager_id INT,
+--     first_name VARCHAR(40) NOT NULL,
+--     last_name VARCHAR(50) NOT NULL,
+--     FOREIGN KEY (role_id)
+--     REFERENCES role(id)
+--     ON DELETE SET NULL
 -- );
 
--- CREATE TABLE customer_order (
---   id INT,
---   customer_id INT,
---   order_details TEXT,
---   FOREIGN KEY (customer_id)
---   REFERENCES customers(id)
---   ON DELETE SET NULL
--- );
