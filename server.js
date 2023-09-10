@@ -222,56 +222,56 @@ function addEmployee() {
     });
 };
 
-// // Function to update an employee's role
-// function updateRole() {
-//   db.query('SELECT CONCAT(employee.first_name, " ", employee.last_name) AS full_name, employee.id AS employee_id, role.* FROM employee INNER JOIN role ON employee.role_id = role.id',
-//     function (err, results) {
-//       if (err) throw err;
+// Function to update an employee's role
+function updateRole() {
+  db.query('SELECT CONCAT(employee.first_name, " ", employee.last_name) AS full_name, employee.id AS employee_id, role.* FROM employee INNER JOIN role ON employee.role_id = role.id',
+    function (err, results) {
+      if (err) throw err;
 
-//       let employeesEl = results.map(employee => ({
-//         full_name: employee.full_name,
-//         id: employee.employee_id,
-//         value: [employee.full_name, employee.employee_id]
-//       }))
+      let employeesEl = results.map(employee => ({
+        full_name: employee.full_name,
+        id: employee.employee_id,
+        value: [employee.full_name, employee.employee_id]
+      }))
 
-//       let rolesEl = results.map(role => ({
-//         title: role.title,
-//         id: role.id,
-//         value: [role.title, role.id]
-//       }));
+      let rolesEl = results.map(role => ({
+        title: role.title,
+        id: role.id,
+        value: [role.title, role.id]
+      }));
 
-//       console.log(employeesEl)
+      console.log(employeesEl)
 
-//       inquirer.prompt([
-//         {
-//           type: 'list',
-//           name: 'employee',
-//           choices: employeesEl,
-//           message: 'Please select one of the following employees:'
-//         },
+      inquirer.prompt([
+        {
+          type: 'list',
+          name: 'employee',
+          choices: employeesEl,
+          message: 'Please select one of the following employees:'
+        },
 
-//         {
-//           type: 'list',
-//           name: 'choosenRole',
-//           choices: rolesEl,
-//           message: 'Please enter the new role of the employee.'
-//         }
-//       ])
-//         .then((answer) => {
-//           let updateId = answer.employee[1];
-//           let updatedRole = answer.choosenRole[1];
-//           db.query(`UPDATE employee SET role_id = ${updatedRole} WHERE id = ${updateId};`,
-//             function (err, results) {
-//               if (err) {
-//                 throw err
-//               }
-//               console.table(results);
-//               SearchSQL();
-//             })
-//         }
-//         )
-//     })
-// };
+        {
+          type: 'list',
+          name: 'choosenRole',
+          choices: rolesEl,
+          message: 'Please enter the new role of the employee.'
+        }
+      ])
+        .then((answer) => {
+          let updateId = answer.employee[1];
+          let updatedRole = answer.choosenRole[1];
+          db.query(`UPDATE employee SET role_id = ${updatedRole} WHERE id = ${updateId};`,
+            function (err, results) {
+              if (err) {
+                throw err
+              }
+              console.table(results);
+              SearchSQL();
+            })
+        }
+        )
+    })
+};
 
 // Call function to initialize app
 SearchSQL();
