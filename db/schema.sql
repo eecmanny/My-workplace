@@ -11,14 +11,13 @@ CREATE TABLE department (
 CREATE TABLE role (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     department_id INT,
-    title VARCHAR(30) NOT NULL,
+    title VARCHAR(30) NOT NULL UNIQUE,
     salary DECIMAL,
     FOREIGN KEY (department_id)
     REFERENCES department(id)
     ON DELETE SET NULL
 );
 
---With my manager id joined
 CREATE TABLE employee (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     role_id INT,

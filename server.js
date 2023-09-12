@@ -3,7 +3,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const fs = require('fs');
-
+require('dotenv').config();
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -12,18 +12,21 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+
+
 // Connect to database
 const db = mysql.createConnection(
   {
     host: '127.0.0.1',
     // MySQL username,
-    user: 'root',
+    user: process.env.DB_USER,
     // TODO: Add MySQL password here
-    password: '!QAZ0okm',
-    database: 'myCompany_db'
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
   },
   console.log(`Connected to the myCompany_db database.`)
 );
+
 
 function SearchSQL() {
   inquirer
@@ -101,17 +104,12 @@ function viewAllDepartments() {
 
 }
 
-//     function viewAllDepartments() {
-//     db.promise().query('SELECT department.department_name, department.id FROM department', function (err, results) {
-//       console.log(results);
-//     });
-// }
 
 
 
 
 function viewAllRoles() {
-  db.promise().query('SELECT role.title, role.id, department_id, role.salary FROM role INNER JOIN department ON role.department_id = department_id')
+  db.promise().query('SELECT role.title, role.id, department_id, role.salary FROM role JOIN department ON role.department_id = department.id')
     .then(function ([rowsRole]) {
       let roles = rowsRole;
       console.table(roles);
@@ -119,11 +117,6 @@ function viewAllRoles() {
     })
 }
 
-// function viewAllRoles() {
-//   db.promise().query('SELECT role.title, role.id, department_id, role.salary FROM role INNER JOIN department ON role.department_id = department_id', function (err, results) {
-//     console.log(results);
-//   });
-// }
 
 function viewAllEmployees() {
   db.promise().query('SELECT employee.id, employee.first_name, employee.last_name, employee.role_id, department_id, role.salary, employee.manager_id FROM employee INNER JOIN role ON employee.role_id = role.id')
@@ -134,11 +127,6 @@ function viewAllEmployees() {
     })
 }
 
-// function viewAllEmployees() {
-//   db.promise().query('SELECT employee.id, employee.first_name, employee.last_name, employee.role_id, department_id, role.salary, employee.manager_id FROM employee INNER JOIN role ON employee.role_id = role.id', function (err, results) {
-//     console.log(results);
-//   });
-// }
 
 // Function add a department
 function addDepartment() {
@@ -215,7 +203,6 @@ function addEmployee() {
   ])
 
     .then((answers) => {
-      // db.query('INSERT INTO role (first_name, last_name, role_id, manager_id) VALUES (answers.first_name, answers.last_name, answers.role_id, answers.manager_id)', [answers.first_name, answers.last_name, answers.role_id, answers.manager_id]);
       db.promise().query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)', [answers.first_name, answers.last_name, answers.role_id, answers.manager_id]);
       console.log('Employee has been added.');
       SearchSQL();
@@ -275,7 +262,6 @@ function updateRole() {
 
 // Call function to initialize app
 SearchSQL();
-
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

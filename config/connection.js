@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 require('dotenv').config();
-const mysql = require('mysql2');
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -9,21 +8,8 @@ const sequelize = new Sequelize(
   {
     host: '127.0.0.1',
     dialect: 'mysql',
-    port: 3306
+    port: 3306,
   }
 );
 
 module.exports = sequelize;
-
-// // Connect to database
-// const db = mysql.createConnection(
-//   {
-//     host: '127.0.0.1',
-//     // MySQL username,
-//     user: 'root',
-//     // TODO: Add MySQL password here
-//     password: '!QAZ0okm',
-//     database: 'myCompany_db'
-//   },
-//   console.log(`Connected to the myCompany_db database.`)
-// );
