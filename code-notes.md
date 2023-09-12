@@ -10,8 +10,7 @@ Because this application won’t be deployed, you’ll also need to create a wal
 
 ## Links
 
-video - 
-
+video - https://youtu.be/tOh6ITJfl28
 repo (github) - https://github.com/eecmanny/My-workplace
 
 repo (heroku) - 
